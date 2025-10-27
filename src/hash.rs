@@ -10,6 +10,8 @@
 // You should have received a copy of the GNU General Public License along
 // with this program; if not, see <https://www.gnu.org/licenses/>.
 
+use std::os::raw::c_void;
+
 pub const GIT_MAX_RAWSZ: usize = 32;
 
 /// A binary object ID.
@@ -159,5 +161,18 @@ impl HashAlgorithm {
             HashAlgorithm::SHA1 => &Self::SHA1_NULL_OID,
             HashAlgorithm::SHA256 => &Self::SHA256_NULL_OID,
         }
+    }
+
+    /// A pointer to the C `struct git_hash_algo` for interoperability with C.
+    pub fn hash_algo_ptr(self) -> *const c_void {
+        unsafe { c::hash_algo_ptr_by_offset(self as u32) }
+    }
+}
+
+pub mod c {
+    use std::os::raw::c_void;
+
+    extern "C" {
+        pub fn hash_algo_ptr_by_offset(n: u32) -> *const c_void;
     }
 }

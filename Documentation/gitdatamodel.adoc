@@ -18,13 +18,13 @@ means when the documentation says "object", "reference" or "index".
 
 Git's core operations use 4 kinds of data:
 
-1. <<objects,Objects>>: commits, trees, blobs, and tag objects
+1. <<object,Objects>>: commits, trees, blobs, and tag objects
 2. <<references,References>>: branches, tags,
    remote-tracking branches, etc
 3. <<index,The index>>, also known as the staging area
 4. <<reflogs,Reflogs>>: logs of changes to references ("ref log")
 
-[[objects]]
+[[object]]
 OBJECTS
 -------
 
